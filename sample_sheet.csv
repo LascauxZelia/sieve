@@ -1,3 +1,4 @@
 sample,read_1,read_2,biome
-AD_DNF,data/read1.fastq.gz,,aquatic
-AH_DNF,data/read2.fastq.gz,,cave
+sample1,data/sample1_R1.fastq.gz,data/sample1_R2.fastq.gz,root:Environmental:Terrestrial:Soil:Mine
+sample2,data/sample2_R1.fastq.gz,data/sample2_R2.fastq.gz,root:Environmental:Terrestrial:Soil
+sample3,data/sample3_R1.fastq.gz,data/sample3_R2.fastq.gz,root:Environmental:Terrestrial:Soil:Cave
