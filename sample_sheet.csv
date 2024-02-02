@@ -1,0 +1,3 @@
+sample,read_1,read_2,biome
+AD_DNF,data/read1.fastq.gz,,aquatic
+AH_DNF,data/read2.fastq.gz,,cave

@@ -1,0 +1,30 @@
+Bootstrap: docker
+From: continuumio/miniconda3:4.6.14
+
+%labels
+    MAINTAINER Zelia Bontemps <zelia.bontemps@imbim.uu.se>
+    DESCRIPTION Singularity image containing all requirements for the sieve pipeline
+    VERSION 0.1
+
+%environment
+    export PATH=/opt/conda/envs/sieve/bin:${PATH}
+    
+%post
+    /opt/conda/bin/conda config --add channels defaults
+    /opt/conda/bin/conda config --add channels conda-forge
+    /opt/conda/bin/conda config --add channels bioconda
+    /opt/conda/bin/conda create -n sieve seqtk macsyfinder cat requests mg-toolkit diamond megahit=1.2.9 concoct
+    /opt/conda/envs/sieve/bin/pip install micomplete
+    /opt/conda/bin/conda install -y -c conda-forge mamba
+    /opt/conda/bin/mamba install -n sieve das_tool biopython=1.78 matplotlib bbmap bwa bowtie2 maxbin2 numpy=1.26 scipy=1.11 pplacer metabat2 adapterremoval
+
+    cd /opt/conda/envs/sieve/lib
+    ln -s libtiff.so.6 libtiff.so.5
+   
+%runscript
+    source /opt/conda/etc/profile.d/conda.sh
+    exec /opt/conda/envs/sieve/bin/"$@"
+
+
+%test
+/opt/conda/envs/sieve/bin/prodigal -V
