@@ -1,15 +1,10 @@
 # SIEVE Pipeline
 SIEVE is a bioinformatics filters-analysis pipeline for assembly, binning and annotation of metagenomes from EBI public database (database mining) or local user data.
 
-Introduction
-============
-
-SIEVE is a bioinformatics filters-analysis pipeline for assembly, binning and annotation of metagenomes from EBI public database (database mining) or local user data.  
-
 Please check the documentation here: <https://rdv-sieve.readthedocs.io>
 
 Pipeline summary
-----------------
+================
 
 To analyse metagenomic datasets, users can input their own data (the pipeline will be in charge of the trimming) or filter and collect data from the European public database EBI using the MGnify API. 
 
@@ -27,7 +22,7 @@ Futhermore, the pipeline creates various reports in the results directory specif
 A shiny app is available to visualise the main results. 
 
 Basic usage
------------
+===========
 
 .. NOTE::
 
@@ -44,16 +39,17 @@ Basic usage
 For more details and further functionality, please refer to the usage and parameters documentation
 
 Pipeline output
----------------
+===============
 
 To see the results of an example test run with a full size dataset refers to results tab on the Github pipeline page. For more details about the output files and reports, please refer to the output documentation.
 
-Inputs
-------
+Input
+=====
 
 The pipeline supports two types of input. 
 
-Local data  
+Local data
+----------
 
 The user can enter their own data by adding the flag ``--local``. All raw reads must be in the same directory and have the same extension ``.fastq.gz``. 
 
@@ -65,7 +61,8 @@ It has the format: ``sample,read_1,read_2,biome``. For more details please refer
 
    The 'local data' input option only works with short reads. 
 
-MGnify API  
+MGnify API
+----------
 
 The pipeline can be run with metagenomic data from the European public database EBI. The data are retrieved using MGnify API (<https://www.ebi.ac.uk/metagenomics>).
 
@@ -79,7 +76,7 @@ If you use the MGnify API option as input please cite the article: Lorna Richard
 For more details, please refer to the usage documentation (<https://rdv-sieve.readthedocs.io/en/latest/usage.html>)
 
 Credits
--------
+=======
 
 SIEVE pipeline was written by Zelia Bontemps, Andrei Gulliaev and Lionel Guy at Uppsala University (Departement of Medical Biochemistry and Microbiology).
 
@@ -87,6 +84,6 @@ We thank the MGnify team for the assistance in the developpement of this pipelin
 
 
 Citation
---------
+========
 
 If you use SIEVE, please cite the article: XXX
