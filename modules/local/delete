@@ -1,0 +1,43 @@
+
+sample,read_1,read_2,experiment,biome
+AD_DNF,data/AD_DNF_1.fastq.gz,data/AD_DNF_2.fastq.gz,metagenomic,aquatic
+AH_DNF,data/AH_DNF_1.fastq.gz,data/AH_DNF_2.fastq.gz,metagenomic,soil
+
+    ch_bins = BIN_QUALITY_ANNOTATION.out.tuple_out.map{ row -> [row[0], row[1], row[2], row[3], row[4]] }
+        | branch { accession, experiment, lineage, bin, quality ->
+            good: quality == "good_quality"
+            bad: quality == "bad_quality"
+        }
+
+    ch_maxbin2 = MAXBIN2(CONTIGS_COVERAGE.out, params.markers, params.probthreshold, params.bin)
+
+    ch_concoct = CONCOCT(CONTIGS_COVERAGE.out, params.chunk_size, params.overlap_size, params.bin) 
+
+    ch_combined_binning = ch_contigs.combine(ch_maxbin2, by: [0,1,2])
+        .combine(ch_concoct, by: [0,1,2])
+
+    ch_dastool = DASTOOL(ch_combined_binning, params.score_threshold, params.megabin_penalty, params.duplicate_penalty, params.bin)
+    ch_dastool.view()
+
+    if ('maxbin2' && 'concoct' in params.bin) {
+        // Use ch_maxbin2 as input
+        println 'work1'
+        selected_channel = ch_dastool
+    } else if ('concoct' in params.bin) {
+        // Use ch_concoct as input
+        println 'work2'
+        selected_channel = ch_concoct.map { row -> [row[0], row[1], row[2], row[4]] }
+    } else {
+        // Use ch_dastool as input
+        println 'work3'
+        selected_channel = ch_maxbin2
+    }
+
+
+    CAT bins -b "$bin" -d "$cat_db" -t "$cat_taxonomy" -p "$faa" -a "$alignment" -o "$bin"_bat
+    #Add official names
+    CAT add_names --only_official -i "$bin"_bat.bin2classification.txt -t "$cat_taxonomy" -o "$bin"_bins_classification_official_names.txt
+    #Add non-official names
+    CAT add_names -i "$bin"_bat.bin2classification.txt -t "$cat_taxonomy" -o "$bin"_bins_classification_names.txt
+    #Summarise into one file
+    CAT summarise -i "$bin"_bins_classification_official_names.txt -o "$bin"_bins_classification_summary.txt
