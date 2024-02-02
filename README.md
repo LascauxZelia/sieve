@@ -4,8 +4,8 @@ SIEVE is a bioinformatics filters-analysis pipeline for assembly, binning and an
 Introduction
 ============
 
-`SIEVE <https://github.com/LascauxZelia/sieve>`_ is a bioinformatics filters-analysis pipeline for assembly, binning and annotation of metagenomes from EBI public database (database mining) or local user data. 
-Please check the documentation `here <https://rdv-sieve.readthedocs.io/en/latest/index.html#>`_
+SIEVE is a bioinformatics filters-analysis pipeline for assembly, binning and annotation of metagenomes from EBI public database (database mining) or local user data. 
+Please check the documentation here: <https://rdv-sieve.readthedocs.io>
 
 Pipeline summary
 ----------------
@@ -14,7 +14,7 @@ To analyse metagenomic datasets, users can input their own data (the pipeline wi
 
 The pipeline then:
 
-* Check for the presence of genes of interest using `diamond <https://github.com/bbuchfink/diamond>`_ 
+* Check for the presence of genes of interest using diamond <https://github.com/bbuchfink/diamond>
 * Performs assembly using `MEGAHIT <https://github.com/voutcn/megahit>`_ and predicts proteins-coding genes for the assemblies using `Prodigal <https://github.com/hyattpd/Prodigalt>`_ .
 * Check for the presence of macromolecular secretion systems with `MacSyFinder <https://github.com/gem-pasteur/macsyfinder>`_ .
 * Extract contigs of interest using `seqtk <https://github.com/lh3/seqtk>`_ and assigns taxonomy using `CAT <https://github.com/dutilh/CAT>`_ .
