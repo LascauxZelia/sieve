@@ -53,7 +53,7 @@ Local data
 
 The user can enter their own data by adding the flag ``--local``. All raw reads must be in the same directory and have the same extension ``.fastq.gz``. 
 
-In the same directory the user must add the samples files. The samples file specifies the samples, the name of the corresponding raw read files and the sequencing pair represented in these files, separated by tabs. A template is available `here <https://github.com/LascauxZelia/sieve>`_ . 
+In the same directory the user must add the samples files. The samples file specifies the samples, the name of the corresponding raw read files and the sequencing pair represented in these files, separated by tabs. A template is available here (<https://github.com/LascauxZelia/sieve>). 
 
 It has the format: ``sample,read_1,read_2,biome``. For more details please refer to the documentation.
 
