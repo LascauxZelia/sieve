@@ -24,17 +24,12 @@ A shiny app is available to visualise the main results.
 Basic usage
 ===========
 
-.. NOTE::
+```
+   nextflow run . --resultsDir <OUTDIR> --cat_db <PATH/TO/CAT_database> --cat_taxonomy <PATH/TO/CAT_taxonomy>
+```
 
-   If you are new to Nextflow, please refer to this [page](<https://www.nextflow.io/docs/latest/getstarted.html>) on how to set-up Nextflow. 
-
-.. code-block:: console
-
-   nextflow run main.nf --resultsDir <OUTDIR> --cat_db <PATH/TO/CAT_database> --cat_taxonomy <PATH/TO/CAT_taxonomy>
-
-.. WARNING::
-
-   Please provide pipeline parameters via the command line or Nextflow config file ``nextflow.config``.
+NOTE:: If you are new to Nextflow, please refer to this [page](<https://www.nextflow.io/docs/latest/getstarted.html>) on how to set-up Nextflow.  
+WARNING:: Please provide pipeline parameters via the command line or Nextflow config file ``nextflow.config``.  
 
 For more details and further functionality, please refer to the usage and parameters documentation
 
@@ -57,9 +52,7 @@ In the same directory the user must add the samples files. The samples file spec
 
 It has the format: ``sample,read_1,read_2,biome``. For more details please refer to the documentation.
 
-.. WARNING::
-
-   The 'local data' input option only works with short reads. 
+WARNING:: The 'local data' input option only works with short reads. 
 
 MGnify API
 ----------
