@@ -1,7 +1,7 @@
 # SIEVE Pipeline
 SIEVE is a bioinformatics filters-analysis pipeline for assembly, binning and annotation of metagenomes from EBI public database (database mining) or local user data.
 
-Please check the documentation here: <https://rdv-sieve.readthedocs.io>
+Please check the documentation [here](https://rdv-sieve.readthedocs.io)
 
 Pipeline summary
 ================
