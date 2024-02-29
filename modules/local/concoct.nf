@@ -1,9 +1,6 @@
     process CONCOCT { 
     tag "$accession"
 
-    cpus 1
-    maxForks 1
-
     input:
     tuple val(accession), val(experiment), val(biome), path(contig), path(ab), path(alignment)
     val chunk_size

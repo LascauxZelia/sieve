@@ -1,8 +1,5 @@
-
 process DOWNLOAD {
     tag "$accession"
-    errorStrategy 'retry'
-    maxErrors 5
 
     input:
     tuple val(accession), val(experiment), val(biome)

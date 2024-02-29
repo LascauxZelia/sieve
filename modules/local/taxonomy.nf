@@ -1,7 +1,5 @@
 process TAXONOMY {
-    errorStrategy 'retry'
-    maxErrors 5
-    //publishDir "$params.resultsDir/taxonomy", pattern: "*_taxonomy_details.csv"
+    publishDir "$params.resultsDir/taxonomy", pattern: "*_taxonomy_details.csv"
     tag "$accession"
 
     input:

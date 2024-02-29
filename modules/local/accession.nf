@@ -1,6 +1,5 @@
 process ACCESSION {
-    errorStrategy 'retry'
-    maxErrors 1
+
     publishDir "$params.resultsDir/accession", mode:'copy'
 
     input:

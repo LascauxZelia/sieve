@@ -2,9 +2,6 @@ process BAT {
     //publishDir "$params.resultsDir/bins/classification/", pattern: "*_bins_classification_official_names.txt"
     tag "$bin_name"
 
-    cpus 3
-    maxForks 1 
-
     input:
     tuple val(accession), val(experiment), val(biome), path(bin), val(quality), val(bin_name), path(alignment), path(faa)
     val cat_db

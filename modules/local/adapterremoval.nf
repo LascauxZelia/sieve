@@ -1,9 +1,6 @@
 process ADAPTERREMOVAL { 
     tag "$accession"
 
-    cpus 4
-    maxForks 2 
-
     input:
     tuple val(single_end), val(accession), val(experiment), val(biome), path(reads)
     path(adapterlist)

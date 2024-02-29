@@ -2,10 +2,6 @@ process CAT {
     publishDir "$params.resultsDir/contigs/classification/", pattern: "*_summary.txt"
     tag "$accession"
 
-    cpus 8
-    maxForks 1
-     
-
     input:
     tuple val(accession), val(experiment), val(biome), path(contig), path(reads)
     val cat_db

@@ -1,9 +1,6 @@
 process CONTIGS_COVERAGE { 
     tag "$accession"
 
-    cpus 12
-    maxForks 1
-
     input:
     tuple val(accession), val(experiment), val(biome), path(contig), path(reads)
 

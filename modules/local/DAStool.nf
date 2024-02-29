@@ -1,9 +1,6 @@
     process DASTOOL { 
     tag "$accession"
 
-    cpus 4
-    maxForks 2 
-
     input:
     tuple val(accession), val(experiment), val(biome), path(contig), path(reads), path(maxbin), path(concoct_file), path(concoct)
     val score_threshold

@@ -1,9 +1,6 @@
 process MACSYFINDER { 
     tag "$accession"
 
-    cpus 2
-    maxForks 5
-
     input:
     tuple val(accession), val(experiment), val(biome), path(assembly), path(faa)
     val (modelpath)

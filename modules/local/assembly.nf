@@ -1,8 +1,5 @@
 process ASSEMBLY { 
     tag "$accession"
-    
-    cpus 8
-    maxForks 2
 
     input:
     tuple val(accession), val(experiment), val(biome), path(reads)
