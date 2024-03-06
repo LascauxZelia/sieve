@@ -22,13 +22,21 @@ workflow MGNIFY {
     ch_accession = ACCESSION (
         file_name, params.biome_name, params.lineage, params.experiment_type, params.study_accession, params.sample_accession, params.instrument_platform, params.instrument_model, params.pipeline_version, params.page_size
     )
-    ch_split_accession = ch_accession
-        | splitCsv(header: true)
-        | map { row -> [row.accession, row.version, row.experiment, row.biome]}
 
-    ch_taxonomy = TAXONOMY(params.taxonomyphylum, params.taxonomyclass, params.taxonomyorder, params.taxonomyfamily, params.taxonomygenus, params.taxonomyspecies, ch_split_accession)
-        | splitCsv(header: true)
-        | map { row -> [row.accession, row.experiment, row.biome]}
+    if (params.taxonomyphylum == "null" && params.taxonomyclass == "null" && params.taxonomyorder == "null" && params.taxonomyfamily == "null" && params.taxonomygenus == "null" && params.taxonomyspecies == "null"){
+            ch_taxonomy = ch_accession
+            | splitCsv(header: true)
+            | map { row -> [row.accession, row.experiment, row.biome]}
+    }
+    else {
+        ch_split_accession = ch_accession
+            | splitCsv(header: true)
+            | map { row -> [row.accession, row.version, row.experiment, row.biome]}
+        ch_taxonomy = TAXONOMY(params.taxonomyphylum, params.taxonomyclass, params.taxonomyorder, params.taxonomyfamily, params.taxonomygenus, params.taxonomyspecies, ch_split_accession)
+            | splitCsv(header: true)
+            | map { row -> [row.accession, row.experiment, row.biome]}
+    }
+
 
     ch_download = DOWNLOAD(ch_taxonomy, params.resultsDir)
 
