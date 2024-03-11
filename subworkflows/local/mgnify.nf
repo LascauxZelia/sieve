@@ -32,7 +32,10 @@ workflow MGNIFY {
         ch_split_accession = ch_accession
             | splitCsv(header: true)
             | map { row -> [row.accession, row.version, row.experiment, row.biome]}
-        ch_taxonomy = TAXONOMY(params.taxonomyphylum, params.taxonomyclass, params.taxonomyorder, params.taxonomyfamily, params.taxonomygenus, params.taxonomyspecies, ch_split_accession)
+            
+        TAXONOMY(params.taxonomyphylum, params.taxonomyclass, params.taxonomyorder, params.taxonomyfamily, params.taxonomygenus, params.taxonomyspecies, ch_split_accession)
+        
+        ch_taxonomy = TAXONOMY.out.tax_id
             | splitCsv(header: true)
             | map { row -> [row.accession, row.experiment, row.biome]}
     }
