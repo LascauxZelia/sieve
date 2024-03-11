@@ -45,7 +45,7 @@ process TAXONOMY {
     accession = "$accession"
     version = "$version"
     experiment = "$experiment"
-    lineage = "$biome"
+    biome = "$biome"
 
     rows = []
 
@@ -79,7 +79,7 @@ process TAXONOMY {
                             "name" : ssu_taxa.name,
                             "count":ssu_taxa.count,
                             "experiment": experiment,
-                            "lineage": lineage
+                            "biome": biome
                             }
                         )
                         print(f"For {accession} the nb of reads affiliated to {ssu_taxa.name} are : {ssu_taxa.count}")
@@ -115,7 +115,7 @@ process TAXONOMY {
                             "name" : ssu_taxa.name,
                             "count":ssu_taxa.count,
                             "experiment": experiment,
-                            "lineage": lineage
+                            "biome": biome
                             }
                         )
                         print(f"For {accession} the nb of reads affiliated to {ssu_taxa.name} are : {ssu_taxa.count}")
@@ -131,7 +131,7 @@ process TAXONOMY {
     
     if not data_frame.empty:
         # Sum counts per accession
-        data_frame_sum = data_frame.groupby(["accession", "experiment", "lineage"])["count"].sum().reset_index()
+        data_frame_sum = data_frame.groupby(["accession", "experiment", "biome"])["count"].sum().reset_index()
 
         # Filter accessions with non-zero count
         data_frame_filtered = data_frame_sum[data_frame_sum["count"] > 0]
