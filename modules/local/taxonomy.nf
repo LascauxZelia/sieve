@@ -13,7 +13,7 @@ process TAXONOMY {
 
     output:
     path('*_ID_to_download.csv'), optional: true, emit: tax_id
-    //path('*_taxonomy_details.csv'), optional: true, emit: taxo_detail
+    path('*_taxonomy_details.csv'), optional: true, emit: taxo_detail
 
     script:
     """
