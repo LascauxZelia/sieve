@@ -109,7 +109,7 @@ workflow SIEVE {
     //MODULE: MacSyFinder
 
     if (!params.nomacsyfinder){
-        MACSYFINDER(CONTIGS_ANNOTATION.out, params.modelpath, params.model, params.nbmodel, params.coverage, params.evalue)
+        MACSYFINDER(CONTIGS_ANNOTATION.out.annotation, params.modelpath, params.model, params.nbmodel, params.coverage, params.evalue)
         ch_contigs = MACSYFINDER.out
     }
     else {
@@ -119,7 +119,7 @@ workflow SIEVE {
     ch_contigs = ch_contigs.combine(ch_reads, by: [0,1,2])
 
     //MODULE: CAT (contigs classification)
-    ch_cat = CAT(ch_contigs,params.cat_db, params.cat_taxonomy)
+    CAT(ch_contigs,params.cat_db, params.cat_taxonomy)
     
     //MODULE: CONTIG_COVERAGE (BWA)
     CONTIGS_COVERAGE(ch_contigs)
@@ -160,10 +160,10 @@ workflow SIEVE {
 
     //MODULE: BIN CLASSIFICATION (BAT)
     if (!params.class_all_bins){
-        BAT(ch_bins.good.transpose().combine(ch_cat, by: [0]), params.cat_db, params.cat_taxonomy, params.f)
+        BAT(ch_bins.good.transpose().combine(CAT.out.classification, by: [0]), params.cat_db, params.cat_taxonomy, params.f)
     }
     else {
-        BAT(BIN_QUALITY_ANNOTATION.out.tuple_out.transpose().combine(ch_cat, by: [0]), params.cat_db, params.cat_taxonomy, params.f)
+        BAT(BIN_QUALITY_ANNOTATION.out.tuple_out.transpose().combine(CAT.out.classification, by: [0]), params.cat_db, params.cat_taxonomy, params.f)
     }
 
     ch_stats = BAT.out.splitCsv(header: true)
