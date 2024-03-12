@@ -8,7 +8,8 @@ process CAT {
     val cat_taxonomy
 
     output: 
-    tuple val(accession), path('*.alignment.diamond'), path('*.faa')
+    tuple val(accession), path('*.alignment.diamond'), path('*.faa'), emit: classification
+    path ('*_summary.txt'), emit: file_contig_classification
 
     script:
     """
