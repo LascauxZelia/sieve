@@ -1,5 +1,5 @@
 process BAT { 
-    //publishDir "$params.resultsDir/bins/classification/", pattern: "*_bins_classification_official_names.txt"
+    publishDir "$params.resultsDir/bins/classification/", pattern: "*_sub_classification.csv"
     tag "$bin_name"
 
     input:
