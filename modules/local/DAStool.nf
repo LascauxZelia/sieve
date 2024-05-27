@@ -24,14 +24,5 @@
     
     DAS_Tool -i "$concoct_file","$accession"_maxbin.contigs2bin.tsv -l concoct,maxbin -c "$contig" -o "$accession" --write_bin_evals --write_bins --duplicate_penalty "$duplicate_penalty" --megabin_penalty "$megabin_penalty" --threads "$task.cpus" --score_threshold "$score_threshold" || true
 
-    # Capture the exit status
-    DAStool_exit_status=\$?
-
-    # Check if DASTool ran successfully or encountered the expected error
-    if [[ \$DAStool_exit_status -eq 1 ]]; then
-        # DasTool ran successfully or encountered the expected error(s)
-        echo "DAS Tool for "$accession" encountered an error, please check the log file in the working directory. Error code: \$DAStool_exit_status"      
-    fi
-
     """
 }
