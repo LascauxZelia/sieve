@@ -64,7 +64,7 @@ process DOWNLOAD {
         else:
             print(f"No files to concatenate for accession {accession}.")
 
-    # Example usage
+    # Usage
     with Session(API_BASE) as session:
         download_and_concatenate(session, accession, experiment)
     
