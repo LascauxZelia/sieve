@@ -28,13 +28,8 @@ process MACSYFINDER {
 
     result_file="macsyfinder_results.tsv"
 
-    # Dataframe to save all accession value
-    suffix_array=()
-
     # Execute MacSyfinder
     mkdir -p 'out_macsyfinder' || exit 1
-
-    suffix_array+=("$accession")
 
     macsyfinder \
     --db-type ordered_replicon \
