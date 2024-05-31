@@ -31,8 +31,6 @@ process TAXONOMY {
     from urllib.request import urlretrieve
     from jsonapi_client import Session, Filter
 
-    from jsonapi_client import Filter, Session
-
     API_BASE = "https://www.ebi.ac.uk/metagenomics/api/v1"
 
     ## Parse options
