@@ -3,6 +3,7 @@ process MACSYFINDER {
 
     input:
     tuple val(accession), val(experiment), val(biome), path(assembly), path(faa)
+    val (targetmodel)
     val (modelpath)
     val (model)
     val (nbmodel)
@@ -15,15 +16,15 @@ process MACSYFINDER {
     script:
     """
     if [ "$model" == "TXSScan" ]; then
-        macsydata install -u TXSScan
+        macsydata install --target "$targetmodel" TXSScan
     elif [ "$model" == "TFFscan" ]; then
-        macsydata install -u TFFscan
+        macsydata install --target "$targetmodel"  TFFscan
     elif [ "$model" == "CONJscan" ]; then
-        macsydata install -u CONJscan
+        macsydata install --target "$targetmodel"  CONJscan
     elif [ "$model" == "CasFinder" ]; then
-        macsydata install -u CasFinder
+        macsydata install --target "$targetmodel"  CasFinder
     else
-        cp -r "$modelpath" ~/.macsyfinder/models/
+        cp -r "$modelpath" "$targetmodel" 
     fi
 
     result_file="macsyfinder_results.tsv"
